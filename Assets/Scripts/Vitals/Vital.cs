@@ -54,6 +54,4 @@ public class Vital : ScriptableObject
         }
         return false;
     }
-
-
 }
