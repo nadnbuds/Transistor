@@ -15,8 +15,7 @@ public abstract class Producer : MonoBehaviour {
     {
         Vector2 Location = Random.insideUnitCircle * (dropRadiusMax - dropRadiusMin);
         float angle = Vector2.Angle(Vector2.zero, Location);
-        Vector3 cross = Vector3.Cross(Vector2.zero, Location);
-        angle = cross.z > 0 ? 360 - angle : angle;
+        angle = Location.y < 0 ? 360 - angle : angle;
         angle *= Mathf.Deg2Rad;
         Location.x += Mathf.Cos(angle) * dropRadiusMin;
         Location.y += Mathf.Sin(angle) * dropRadiusMin;
