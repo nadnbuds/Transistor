@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VitalResourceChild : VitalResource {
-
-    private void Start()
+public class Breathing : VitalResource
+{
+    private void Awake()
     {
-        Value = 1;
+        base.Init();
     }
 }

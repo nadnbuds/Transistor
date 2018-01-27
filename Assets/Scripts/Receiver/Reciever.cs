@@ -23,7 +23,7 @@ public class Reciever : MonoBehaviour
         {
             //increase vital that reciever relates to
             other.gameObject.SetActive(false);
-            vital.Increment(resource.Value);
+            vital.Health += resource.Quantity;
         }
     }
 }
