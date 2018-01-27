@@ -5,7 +5,7 @@ using UnityEngine;
 public class AlternatingProducer : Producer {
 
 	public VitalResource resource2;
-	public bool resource_switch = 0;
+	public int resource_switch = 0;
 
 	protected override void generate(){
 		if (resource_switch == 0) {
