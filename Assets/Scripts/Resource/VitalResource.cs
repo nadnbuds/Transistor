@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ResourceType { Heart, Breathing, Digestion, Thought, Heat }
+public enum ResourceType { Heart, Breathing, Digestion, Thought, Heat, All, MAX }
 
 public abstract class VitalResource : MonoBehaviour
 {

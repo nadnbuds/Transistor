@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Breathing : VitalResource
-{
+public class VitalResourceBasic : VitalResource {
+
     private void Awake()
     {
         base.Init();

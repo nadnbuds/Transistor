@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum VitalType{ BodyHeat, Breathing, Digestion, HeartBeat, Thought, Energy, Exercise, Mood, MAX }
+
 [CreateAssetMenu()]
 public class Vital : ScriptableObject
 {
@@ -10,6 +12,8 @@ public class Vital : ScriptableObject
     private int maxHealth;
     [SerializeField]
     private int startingHealth;
+    [SerializeField]
+    private VitalType vitalType;
 
     public UnityEvent OnZeroHealth { get; private set; }
     private int health;
