@@ -11,6 +11,6 @@ public abstract class SubVital : Vital
         this.vitals = effectedVitals;
     }
 
-    public override abstract void Increment();
-    public override abstract void Decrement();
+    public override abstract void Increment(float value);
+    public override abstract void Decrement(float value);
 }

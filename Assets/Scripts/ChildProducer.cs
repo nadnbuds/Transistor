@@ -9,7 +9,7 @@ public class ChildProducer : Producer {
 		Vector3 current_postion = transform.position;
 		Vector3 new_position = current_postion + Vector3.down * 2;	//2 units below the producer
 		//Instantiate (resource, new Vector3(0, 0, 0), Quaternion.identity);
-		Instantiate (resource, new_position, Quaternion.identity);
+		Instantiate<VitalResource>(resource, new_position, Quaternion.identity);
 	}
 
 	// Use this for initialization

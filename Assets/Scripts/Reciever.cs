@@ -18,12 +18,12 @@ public class Reciever : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Resource resource;
-        if (resource = other.gameObject.GetComponent<Resource>())
+        VitalResource resource;
+        if (resource = other.gameObject.GetComponent<VitalResource>())
         {
             //increase vital that reciever relates to
             other.gameObject.SetActive(false);
-            vital.Increment(resource.value);
+            vital.Increment(resource.Value);
         }
     }
 }

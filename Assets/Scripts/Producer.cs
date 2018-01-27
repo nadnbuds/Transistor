@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Producer : MonoBehaviour {
 
-	public Resources resource;
+	public VitalResource resource;
 
 	public abstract void Generate();
 

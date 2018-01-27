@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     private float interactionDistance;
 
     private bool canPickup = true;
-    private Resource focusObj;
+    private VitalResource focusObj;
 
 	public void Move(float horizontal, float vertical)
     {
@@ -50,9 +50,9 @@ public class PlayerController : MonoBehaviour {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, interactionDistance))
             {
-                if (hit.GetType() == typeof(Resource))
+                if (hit.GetType() == typeof(VitalResource))
                 {
-                    focusObj = hit.transform.gameObject as Resource;
+                    focusObj = hit.transform.gameObject.GetComponent<VitalResource>();
                 }
             }
         }
