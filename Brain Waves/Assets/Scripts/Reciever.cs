@@ -2,34 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class DVital : MonoBehaviour
-{
-    void Values ()
-    {
-
-    }
-
-    void Increment ()
-    {
-
-    }
-
-    void Decrement ()
-    {
-
-    }
-
-    void OnZero ()
-    {
-
-    }
-
-
-}
 public class Reciever : MonoBehaviour
 {
-
+    [SerializeField]
+    private Vital vital;
 	// Use this for initialization
 	void Start () {
 		
@@ -42,12 +18,12 @@ public class Reciever : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        int count = 0;
-        if (other.gameObject.GetComponent<Resource>)
+        Resource resource;
+        if (resource = other.gameObject.GetComponent<Resource>())
         {
             //increase vital that reciever relates to
-            other.GetComponent<Renderer>.enabled = false;
-            ++count;
+            other.gameObject.SetActive(false);
+            vital.Increment(resource.value);
         }
     }
 }
