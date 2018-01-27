@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour {
         {
             Debug.Log("Hit");
             focusObj.transform.SetParent(transform);
+            focusObj.GetComponent<Rigidbody>().isKinematic = true;
             canPickup = false;
         }
     }

@@ -201,10 +201,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 479176966}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd27db21f2931234295b2a797b50a884, type: 3}
+  m_Script: {fileID: 11500000, guid: e6d6a921d19cdc84f8ea6b6caeba9cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   resource: {fileID: 114434430911944676, guid: a2314278f9525264da2fa3dfc19f84f1, type: 2}
+  dropRadiusMin: 1
+  dropRadiusMax: 5
+  forceStrength: 50
 --- !u!1 &571671092
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,7 +430,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 774340883}
   m_LocalRotation: {x: 0.41011027, y: -0, z: -0, w: 0.91203594}
-  m_LocalPosition: {x: 0, y: 5.37, z: -11.04}
+  m_LocalPosition: {x: 0, y: 13.33, z: -15.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -444,7 +447,6 @@ GameObject:
   - component: {fileID: 815356533}
   - component: {fileID: 815356532}
   - component: {fileID: 815356531}
-  - component: {fileID: 815356535}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -516,17 +518,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &815356535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 815356530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74cfce2c52173364ebdae90e9a03aede, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1527457734
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,6 +594,7 @@ GameObject:
   - component: {fileID: 1660397388}
   - component: {fileID: 1660397387}
   - component: {fileID: 1660397386}
+  - component: {fileID: 1660397390}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -649,7 +641,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1660397385}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -674,3 +666,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1660397390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1660397385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74cfce2c52173364ebdae90e9a03aede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

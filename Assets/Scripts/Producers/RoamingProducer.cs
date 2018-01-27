@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Producer : MonoBehaviour {
-
-	public VitalResource resource;
-
-	public abstract void Generate();
+public class RoamingProducer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

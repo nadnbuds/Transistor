@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChildProducer : Producer {
 
-	public override void Generate(){
+	protected override void generate(){
 		Debug.Log ("Genearting Resource...");
 		Vector3 current_postion = transform.position;
 		Vector3 new_position = current_postion + Vector3.down * 2;	//2 units below the producer
@@ -14,7 +14,7 @@ public class ChildProducer : Producer {
 
 	// Use this for initialization
 	void Start () {
-		Generate ();
+		generate();
 	}
 	
 	// Update is called once per frame
