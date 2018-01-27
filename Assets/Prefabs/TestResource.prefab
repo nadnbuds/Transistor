@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceType: 0
-  quantity: 0
+  quantity: 5
   dropForce: 3
 --- !u!135 &135037638600040528
 SphereCollider:

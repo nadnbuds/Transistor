@@ -13,3 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   startingHealth: 90
+  vitalType: 2
+  acceptableResources: 0000000003000000
+  DecrementInterval: 2
