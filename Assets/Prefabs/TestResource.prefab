@@ -22,7 +22,8 @@ GameObject:
   - component: {fileID: 33102166136044482}
   - component: {fileID: 135037638600040528}
   - component: {fileID: 23009203830527710}
-  - component: {fileID: 114285908996365994}
+  - component: {fileID: 114434430911944676}
+  - component: {fileID: 54716668178711120}
   m_Layer: 0
   m_Name: TestResource
   m_TagString: Untagged
@@ -52,7 +53,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -68,7 +68,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -84,7 +83,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1332737508142152}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114285908996365994
+--- !u!54 &54716668178711120
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1332737508142152}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &114434430911944676
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -92,10 +106,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1332737508142152}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d56930659b5d8974b88d82c3cf88996d, type: 3}
+  m_Script: {fileID: 11500000, guid: 38463e625c259f74b92d7ef9974c73dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
+  Value: 1
 --- !u!135 &135037638600040528
 SphereCollider:
   m_ObjectHideFlags: 1

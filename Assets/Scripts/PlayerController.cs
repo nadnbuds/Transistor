@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     private float interactionDistance;
 
     private bool canPickup = true;
-    private VitalResource focusObj;
+    private GameObject focusObj;
 
 	public void Move(float horizontal, float vertical)
     {
@@ -33,8 +33,13 @@ public class PlayerController : MonoBehaviour {
 
     private void pickupObj()
     {
-        focusObj.transform.SetParent(transform);
-        canPickup = false;
+        Debug.Log("hi");
+        if(focusObj != null)
+        {
+            Debug.Log("Hit");
+            focusObj.transform.SetParent(transform);
+            canPickup = false;
+        }
     }
 
     private void putDownObj()
@@ -47,12 +52,13 @@ public class PlayerController : MonoBehaviour {
     {
         if (canPickup)
         {
+            focusObj = null;
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, interactionDistance))
             {
-                if (hit.GetType() == typeof(VitalResource))
+                if (hit.transform.gameObject.GetComponent<VitalResource>() != null)
                 {
-                    focusObj = hit.transform.gameObject.GetComponent<VitalResource>();
+                    focusObj = hit.transform.gameObject;
                 }
             }
         }
