@@ -10,13 +10,19 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float interactionDistance;
 
+    private Tooltip toolTip;
     private bool canPickup = true;
     private Interactable focusObj;
 
     [HideInInspector]
     public bool CanMove = true;
 
-	public void Move(float horizontal, float vertical)
+    private void Awake()
+    {
+        toolTip = FindObjectOfType<Tooltip>();
+    }
+
+    public void Move(float horizontal, float vertical)
     {
         if (CanMove)
         {
@@ -43,6 +49,7 @@ public class PlayerController : MonoBehaviour {
         {
             focusObj.ToggleInteract(this);
             canPickup = false;
+            toolTip.HideTooltip();
         }
     }
 
@@ -63,7 +70,12 @@ public class PlayerController : MonoBehaviour {
                 if (hit.transform.gameObject.GetComponent<Interactable>() != null)
                 {
                     focusObj = hit.transform.gameObject.GetComponent<Interactable>();
+                    toolTip.ShowTooltip(hit.transform);
                 }
+            }
+            else
+            {
+                toolTip.HideTooltip();
             }
         }
     }
