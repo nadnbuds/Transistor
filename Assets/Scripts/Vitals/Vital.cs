@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum VitalType{ BodyHeat, Breathing, Digestion, HeartBeat, Thought, Energy, Exercise, Mood, MAX }
+public enum VitalType{ BodyHeat, Digestion, HeartBeat, Thought, Energy, Exercise, Mood, MAX }
 
 [CreateAssetMenu()]
 public class Vital : ScriptableObject
@@ -14,6 +14,8 @@ public class Vital : ScriptableObject
     private int startingHealth;
     [SerializeField]
     private VitalType vitalType;
+    [SerializeField]
+    private List<ResourceType> acceptableResources;
 
     public UnityEvent OnZeroHealth { get; private set; }
     private int health;
@@ -30,6 +32,11 @@ public class Vital : ScriptableObject
             {
                 health = maxHealth;
             }
+            if (health <= 0)
+            {
+                health = 0;
+                OnZeroHealth.Invoke();
+            }
         }
     }
 
@@ -38,8 +45,13 @@ public class Vital : ScriptableObject
         Health = startingHealth;
     }
 
-    public void Regulate()
+    public bool ParseResource(VitalResource res)
     {
-        // TODO
+        if (acceptableResources.Contains(res.Type))
+        {
+            Health += res.Quantity;
+            return true;
+        }
+        return false;
     }
 }

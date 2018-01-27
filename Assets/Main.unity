@@ -201,13 +201,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 479176966}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6d6a921d19cdc84f8ea6b6caeba9cd5, type: 3}
+  m_Script: {fileID: 11500000, guid: 0fa8424ae6d332540ae546eb4016d3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resource: {fileID: 114434430911944676, guid: a2314278f9525264da2fa3dfc19f84f1, type: 2}
+  resource: {fileID: 114702603667706328, guid: a2314278f9525264da2fa3dfc19f84f1, type: 2}
   dropRadiusMin: 1
-  dropRadiusMax: 5
-  forceStrength: 50
+  dropRadiusMax: 10
 --- !u!1 &571671092
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   interactionDistance: 50
+  CanMove: 1
 --- !u!114 &571671094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0
   interactionDistance: 0
+  CanMove: 1
 --- !u!23 &571671096
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -677,3 +678,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74cfce2c52173364ebdae90e9a03aede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vital: {fileID: 0}

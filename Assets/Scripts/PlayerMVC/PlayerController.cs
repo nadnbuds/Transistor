@@ -11,16 +11,22 @@ public class PlayerController : MonoBehaviour {
     private float interactionDistance;
 
     private bool canPickup = true;
-    private GameObject focusObj;
+    private Interactable focusObj;
+
+    [HideInInspector]
+    public bool CanMove = true;
 
 	public void Move(float horizontal, float vertical)
     {
-        Vector3 newVelocity = new Vector3(
+        if (CanMove)
+        {
+            Vector3 newVelocity = new Vector3(
             horizontal * moveSpeed,
             gameObject.GetComponent<Rigidbody>().velocity.y, // or 0
             vertical * moveSpeed);
 
-        this.gameObject.GetComponent<Rigidbody>().velocity = newVelocity;
+            this.gameObject.GetComponent<Rigidbody>().velocity = newVelocity;
+        }
     }
 
     public void Action()
@@ -33,19 +39,16 @@ public class PlayerController : MonoBehaviour {
 
     private void pickupObj()
     {
-        Debug.Log("hi");
         if(focusObj != null)
         {
-            Debug.Log("Hit");
-            focusObj.transform.SetParent(transform);
-            focusObj.GetComponent<Rigidbody>().isKinematic = true;
+            focusObj.ToggleInteract(this);
             canPickup = false;
         }
     }
 
     private void putDownObj()
     {
-        focusObj.transform.SetParent(null);
+        focusObj.ToggleInteract(this);
         canPickup = true;
     }
 
@@ -57,9 +60,9 @@ public class PlayerController : MonoBehaviour {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, interactionDistance))
             {
-                if (hit.transform.gameObject.GetComponent<VitalResource>() != null)
+                if (hit.transform.gameObject.GetComponent<Interactable>() != null)
                 {
-                    focusObj = hit.transform.gameObject;
+                    focusObj = hit.transform.gameObject.GetComponent<Interactable>();
                 }
             }
         }
