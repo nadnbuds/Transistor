@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Length: 0
   eData:
-  - v: {fileID: 0}
-    f: 0
-  - v: {fileID: 0}
-    f: 0
-  - v: {fileID: 0}
-    f: 0
+  - v: {fileID: 11400000, guid: a8377cdaf3fa1ec45883386e6112d0af, type: 2}
+    f: 1
+  - v: {fileID: 11400000, guid: b9e859625cc9b6f44811d3a058554d40, type: 2}
+    f: 1
+  - v: {fileID: 11400000, guid: b6a551fbc44e048469e42c24228ef969, type: 2}
+    f: 1
