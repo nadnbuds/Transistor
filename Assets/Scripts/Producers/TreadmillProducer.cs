@@ -26,11 +26,13 @@ public class TreadmillProducer : Producer, Interactable
         if (!interact)
         {
             player.CanMove = false;
+            player.transform.GetComponent<Rigidbody>().isKinematic = false;
             interact = true;
         }
         else
         {
             player.CanMove = true;
+            player.transform.GetComponent<Rigidbody>().isKinematic = true;
             interact = false;
         }
     }
