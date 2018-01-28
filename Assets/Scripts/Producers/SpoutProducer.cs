@@ -16,7 +16,7 @@ public class SpoutProducer : Producer
     public override void Generate()
     {
         Vector3 dir = RandDrop();
-        VitalResource res = Instantiate(resource);
+        VitalResource res = pooler.RetrieveCopy().GetComponent<VitalResource>();
         res.transform.position = dir + transform.position;
         Rigidbody rb = res.GetComponent<Rigidbody>();
         rb.AddForce(dir * forceStrength);

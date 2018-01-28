@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class HeartBehavior : VitalBehavior
 {
+    public override ResourceType GetCompatibleType()
+    {
+        return ResourceType.Heart;
+    }
+
     /// <summary>
     /// Event that triggers when vital health completely depletes
     /// </summary>
@@ -11,4 +16,5 @@ public class HeartBehavior : VitalBehavior
     {
         GameManager.Instance.GameOver();
     }
+
 }

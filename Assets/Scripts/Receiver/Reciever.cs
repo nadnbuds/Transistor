@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Reciever : MonoBehaviour
 {
+
     [SerializeField]
     private VitalBehavior vital;
 	
@@ -12,8 +13,11 @@ public class Reciever : MonoBehaviour
         VitalResource resource;
         if (resource = other.gameObject.GetComponent<VitalResource>())
         {
-            vital.ParseResource(resource);
-            other.gameObject.SetActive(false);
+            if(resource.Type == vital.GetCompatibleType())
+            {
+                vital.Health += resource.Quantity;
+                other.gameObject.SetActive(false);
+            }
         }
     }
 }

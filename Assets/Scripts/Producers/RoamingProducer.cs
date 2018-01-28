@@ -28,7 +28,7 @@ public class RoamingProducer : Producer
     public override void Generate()
     {
         Vector3 loc = RandDrop();
-        VitalResource res = Instantiate(resource);
+        VitalResource res = pooler.RetrieveCopy().GetComponent<VitalResource>();
         res.transform.position = loc + transform.position;
         counterTilReroute--;
         if(counterTilReroute == 0)

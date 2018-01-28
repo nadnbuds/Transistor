@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ThoughtBehavior : VitalBehavior
 {
+    public override ResourceType GetCompatibleType()
+    {
+        return ResourceType.Thought;
+    }
     /// <summary>
     /// Event that triggers when vital health completely depletes
     /// </summary>

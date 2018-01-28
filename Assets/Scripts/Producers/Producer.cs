@@ -6,7 +6,7 @@ public abstract class Producer : MonoBehaviour
 {
     [SerializeField]
     protected float dropRadiusMin, dropRadiusMax;
-    public VitalResource resource;
+    public ObjectPooler pooler;
     public float SpawnInterval { get; protected set; }
 
 	public abstract void Generate();

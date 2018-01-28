@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VitalBehavior : MonoBehaviour
+public abstract class VitalBehavior : MonoBehaviour
 {
     [SerializeField]
     private Vital vitalData;
@@ -35,6 +35,8 @@ public class VitalBehavior : MonoBehaviour
             ui.ModifyPercentage(Health / (float)vitalData.maxHealth);
         }
     }
+
+    public abstract ResourceType GetCompatibleType();
 
     public void ParseResource(VitalResource r)
     {
