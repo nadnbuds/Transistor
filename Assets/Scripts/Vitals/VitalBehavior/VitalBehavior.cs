@@ -43,10 +43,13 @@ public abstract class VitalBehavior : MonoBehaviour
         Health += r.Quantity;
     }
 
-    public float DecrementInterval
-    {
-        get { return vitalData.decrementInterval; }
+    public float DecrementInterval {
+		get { return vitalData.decrementInterval; }
+		set { vitalData.decrementInterval = (int)value;}
+		//set { DecrementInterval = value;}
     }
+
+
 
     /// <summary>
     /// Event that triggers when vital health completely depletes

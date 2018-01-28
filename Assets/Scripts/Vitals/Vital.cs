@@ -42,7 +42,8 @@ public class Vital : ScriptableObject
         {
             return _decrementInterval;
         }
-        private set
+        //private set
+		set
         {
             _decrementInterval = value;
         }
