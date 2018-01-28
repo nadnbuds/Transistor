@@ -11,17 +11,18 @@ public class VitalResourceBasic : VitalResource, Interactable {
         {
             transform.SetParent(player.transform);
             player.HoistObj(this.gameObject);
-            GetComponent<Rigidbody>().isKinematic = true;
+            rb.isKinematic = true;
+            col.enabled = false;
             interact = true;
         }
         else
         {
             transform.SetParent(null);
-            GetComponent<Rigidbody>().isKinematic = false;
-            GetComponent<Rigidbody>().AddForce(player.transform.forward * dropForce);
+            rb.isKinematic = false;
+            rb.AddForce(player.transform.forward.normalized * dropForce);
+            col.enabled = true;
             interact = false;
         }
-        
     }
 
     private void Awake()

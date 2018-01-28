@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private Transform ArcPoint;
 
+    [SerializeField]
+    private Transform rayCastPoint;
+
     private Tooltip toolTip;
     private bool canPickup = true;
     private Interactable focusObj;
@@ -43,10 +46,16 @@ public class PlayerController : MonoBehaviour {
     {
         if (CanMove)
         {
+            Vector3 dir = new Vector3(horizontal, 0.0f, vertical);
+
             Vector3 newVelocity = new Vector3(
             horizontal * moveSpeed,
             gameObject.GetComponent<Rigidbody>().velocity.y, // or 0
             vertical * moveSpeed);
+            if(dir.magnitude > 0)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), .15f);
+            }
 
             this.gameObject.GetComponent<Rigidbody>().velocity = newVelocity;
         }
@@ -76,7 +85,7 @@ public class PlayerController : MonoBehaviour {
         while(t < 1)
         {
             t += Time.deltaTime * hoistRate;
-            obj.transform.position = GetPoint(a, b, c, t);
+            obj.transform.position = GetPoint(a, c, b, t);
             yield return null;
         }
 
@@ -107,18 +116,22 @@ public class PlayerController : MonoBehaviour {
         if (canPickup)
         {
             focusObj = null;
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, interactionDistance))
+            Collider[] hits;
+            Vector3 pos = rayCastPoint.position + transform.forward * interactionDistance;
+            hits = Physics.OverlapSphere(pos, interactionDistance);
+            foreach (Collider hit in hits)
             {
                 if (hit.transform.gameObject.GetComponent<Interactable>() != null)
                 {
                     focusObj = hit.transform.gameObject.GetComponent<Interactable>();
                     toolTip.ShowTooltip(hit.transform);
+                    break;
                 }
-            }
-            else
-            {
-                toolTip.HideTooltip();
+                else
+                {
+                    toolTip.HideTooltip();
+                }
+
             }
         }
     }

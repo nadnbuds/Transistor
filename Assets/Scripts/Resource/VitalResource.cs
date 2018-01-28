@@ -13,6 +13,9 @@ public abstract class VitalResource : MonoBehaviour, Interactable
     [SerializeField]
     protected float dropForce = 3;
 
+    protected Rigidbody rb;
+    protected Collider col;
+
     public ResourceType Type { get; protected set; }
     public int Quantity { get; protected set; }
 
@@ -22,5 +25,7 @@ public abstract class VitalResource : MonoBehaviour, Interactable
     {
         Type = resourceType;
         Quantity = quantity;
+        rb = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
     }
 }

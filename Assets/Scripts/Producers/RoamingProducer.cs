@@ -22,6 +22,7 @@ public class RoamingProducer : Producer
         counterTilReroute = Random.Range(1, maxGenTilReroute);
         SpawnInterval = 1f;
         RegisterProducer();
+        reroute();
 
     }
 
@@ -34,12 +35,13 @@ public class RoamingProducer : Producer
         if(counterTilReroute == 0)
         {
             counterTilReroute = Random.Range(1, maxGenTilReroute);
+            reroute();
         }
     }
 
     private void reroute()
     {
-        Vector3 randDir = RandDrop() * maxDistance;
+        Vector3 randDir = UnityEngine.Random.insideUnitSphere * maxDistance;
         randDir += transform.position;
         NavMeshHit hit;
         NavMesh.SamplePosition(randDir, out hit, maxDistance, 1);
