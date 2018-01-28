@@ -7,26 +7,18 @@ public class SpoutProducer : Producer
     [SerializeField]
     private float forceStrength = 3;
 
-    float counter;
-    int time = 1;
-
-    private void Update()
+    private void Awake()
     {
-        counter += Time.deltaTime;
-        if(counter > time)
-        {
-            generate();
-            counter = 0.0f;
-        }
+        SpawnInterval = 1f;
+        RegisterProducer();
     }
 
-    protected override void generate()
+    public override void Generate()
     {
-        Vector3 dir = randDrop();
+        Vector3 dir = RandDrop();
         VitalResource res = Instantiate(resource);
         res.transform.position = dir + transform.position;
         Rigidbody rb = res.GetComponent<Rigidbody>();
         rb.AddForce(dir * forceStrength);
-
     }
 }

@@ -5,13 +5,19 @@ using MonsterLove.StateMachine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+// decrement vitals
+// generate
 public class GameManager : Singleton<GameManager>
 {
-    // TODO replace
-    private List<Vital> vitals;
-    public UnityEvent onGameOver{ get; private set; }
-    public Text gameOver;
-    private List<Producer> producers;
+    [SerializeField]
+    private Text gameOver;
+    [SerializeField]
+    private List<Vital> vitalList;
+    public UnityEvent OnGameOver { get; private set; }
+
+    // Float is cooldown time
+    private Dictionary<Producer, float> producers;
+    private Dictionary<Vital, float> vitals;
 
     private enum States
     {
@@ -23,9 +29,19 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        producers = new List<Producer>();
+        // Initialize Producers
+        producers = new Dictionary<Producer, float>();
+
+        // Initialize Vitals
+        vitals = new Dictionary<Vital, float>();
+        foreach (Vital v in vitalList)
+        {
+            vitals[v] = v.DecrementInterval;
+        }
+
+        // Initialize FSM
         fsm = StateMachine<States>.Initialize(this);
-        onGameOver = new UnityEvent();
+        OnGameOver = new UnityEvent();
     }
 
     private void Start()
@@ -35,14 +51,14 @@ public class GameManager : Singleton<GameManager>
 
     public void GameOver()
     {
-        onGameOver.Invoke();
+        OnGameOver.Invoke();
         //When invoke is down, functions that relate to onGameOver will be called
         fsm.ChangeState(States.GameOver);
     }
 
     public void AddProducer(Producer prod)
     {
-        producers.Add(prod);
+        producers.Add(prod, prod.SpawnInterval);
     }
 
     #region States
@@ -56,9 +72,40 @@ public class GameManager : Singleton<GameManager>
         // TODO
     }
 
+    // Updates producer generation intervals and vital decrement intervals
     private void Play_Update()
     {
-        // TODO
+        foreach (var p in producers)
+        {
+            Producer prod = p.Key;
+            if (p.Value <= 0f)
+            {
+                producers[prod] = prod.SpawnInterval;
+                prod.Generate();
+            }
+            else
+            {
+                producers[prod] -= Time.deltaTime;
+            }
+        }
+        foreach (var v in vitals)
+        {
+            Vital vital = v.Key;
+            if (v.Value <= 0f)
+            {
+                vitals[vital] = vital.DecrementInterval;
+                vital.Health--;
+            }
+            else
+            {
+                vitals[vital] -= Time.deltaTime;
+            }
+        }
+    }
+
+    private void Play_Exit()
+    {
+
     }
 
     private void GameOver_Enter()

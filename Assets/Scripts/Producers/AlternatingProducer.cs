@@ -13,7 +13,8 @@ public class AlternatingProducer : Producer {
 	private List<KeyValuePair<VitalResource, float>> resource_list;
 	//private List<Pair<ResourceType, float>> resource_list;
 
-	protected override void generate(){
+	public override void Generate()
+    {
 		float sum = 0;
 		foreach(KeyValuePair<VitalResource, float> pair in resource_list){
 			sum += pair.Value;
@@ -22,7 +23,7 @@ public class AlternatingProducer : Producer {
 		float prev_float = 0;
 		foreach(KeyValuePair<VitalResource , float> pair in resource_list){
 			if (random >= prev_float && random < prev_float + pair.Value) {
-				Instantiate (pair.Key, transform.position + randDrop (), Quaternion.identity);
+				Instantiate (pair.Key, transform.position + RandDrop(), Quaternion.identity);
 				return;
 			}
 			prev_float = prev_float + pair.Value;
@@ -30,12 +31,9 @@ public class AlternatingProducer : Producer {
 	}
 
 	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		//generate ();
+	private void Awake()
+    {
+        SpawnInterval = 1f;
+        RegisterProducer();
 	}
 }

@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoamingProducer : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+public class RoamingProducer : Producer
+{
+    public override void Generate()
+    {
+        throw new System.NotImplementedException();
+    }
 }

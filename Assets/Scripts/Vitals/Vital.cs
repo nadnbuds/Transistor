@@ -18,6 +18,8 @@ public class Vital : ScriptableObject
     private List<ResourceType> acceptableResources;
 
     public UnityEvent OnZeroHealth { get; private set; }
+    public float DecrementInterval { get; set; }
+
     private int health;
     public int Health
     {
@@ -43,6 +45,7 @@ public class Vital : ScriptableObject
     private void Awake()
     {
         Health = startingHealth;
+        DecrementInterval = Random.Range(.5f, 2f);
     }
 
     public bool ParseResource(VitalResource res)

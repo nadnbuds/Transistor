@@ -2,24 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreadmillProducer : Producer, Interactable {
-
+public class TreadmillProducer : Producer, Interactable
+{
     private bool interact = false;
 
-    float counter;
-    int time = 1;
-
-    private void Update()
+    private void Awake()
     {
-        if (interact)
-        {
-            counter += Time.deltaTime;
-            if (counter > time)
-            {
-                generate();
-                counter = 0.0f;
-            }
-        }
+        SpawnInterval = 1f;
+        RegisterProducer();
     }
 
     public void ToggleInteract(PlayerController player)
@@ -36,9 +26,9 @@ public class TreadmillProducer : Producer, Interactable {
         }
     }
 
-    protected override void generate()
+    public override void Generate()
     {
-        Vector3 loc = randDrop();
+        Vector3 loc = RandDrop();
         VitalResource res = Instantiate(resource);
         res.transform.position = loc + transform.position;
     }

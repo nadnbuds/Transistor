@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Producer : MonoBehaviour {
-
-	public VitalResource resource;
-
-	protected abstract void generate();
-
+public abstract class Producer : MonoBehaviour
+{
     [SerializeField]
     protected float dropRadiusMin, dropRadiusMax;
+    public VitalResource resource;
+    public float SpawnInterval { get; protected set; }
 
-    protected Vector3 randDrop()
+	public abstract void Generate();
+    
+    protected void RegisterProducer()
+    {
+        GameManager.Instance.AddProducer(this);
+    }
+
+    protected Vector3 RandDrop()
     {
         Vector2 Location = Random.insideUnitCircle * (dropRadiusMax - dropRadiusMin);
         float angle = Vector2.Angle(Vector2.zero, Location);
