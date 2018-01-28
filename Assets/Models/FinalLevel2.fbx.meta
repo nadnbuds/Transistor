@@ -1,51 +1,42 @@
 fileFormatVersion: 2
-guid: e13e79c0c58977548b81643da4858a5a
-timeCreated: 1517090025
+guid: 6ad453071d8ade8479b78b3f89f86445
+timeCreated: 1517137142
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: group4
-    100002: pasted__group3
-    100004: pasted__pasted__group1
-    100006: pasted__pasted__pasted__pCube1
-    100008: pasted__pasted__pasted__pCube1 1
-    100010: pasted__pasted__pCube1
-    100012: pasted__pasted__pCube2
-    100014: pasted__pCylinder1
-    100016: pCube1
-    100018: pCylinder1
-    100020: //RootNode
-    100022: transform1
-    100024: transform2
-    100026: transform3
-    100028: transform4
-    100030: transform5
-    100032: transform6
-    400000: group4
-    400002: pasted__group3
-    400004: pasted__pasted__group1
-    400006: pasted__pasted__pasted__pCube1
-    400008: pasted__pasted__pasted__pCube1 1
-    400010: pasted__pasted__pCube1
-    400012: pasted__pasted__pCube2
-    400014: pasted__pCylinder1
-    400016: pCube1
-    400018: pCylinder1
-    400020: //RootNode
-    400022: transform1
-    400024: transform2
-    400026: transform3
-    400028: transform4
-    400030: transform5
-    400032: transform6
-    2100000: lambert1
-    2100002: phongE1
-    2300000: pasted__pasted__pasted__pCube1
-    3300000: pasted__pasted__pasted__pCube1
-    4300000: pasted__pasted__pasted__pCube1
-    7400000: Take 001
-    9500000: //RootNode
+    100000: //RootNode
+    100002: Level
+    100004: polySurface1
+    100006: polySurface1 1
+    100008: polySurface2
+    100010: polySurface3
+    100012: polySurface4
+    100014: polySurface5
+    100016: transform2
+    100018: transform3
+    100020: transform4
+    100022: transform5
+    100024: transform6
+    100026: transform7
+    400000: //RootNode
+    400002: Level
+    400004: polySurface1
+    400006: polySurface1 1
+    400008: polySurface2
+    400010: polySurface3
+    400012: polySurface4
+    400014: polySurface5
+    400016: transform2
+    400018: transform3
+    400020: transform4
+    400022: transform5
+    400024: transform6
+    400026: transform7
+    2100000: lambert4
+    2300000: polySurface1
+    3300000: polySurface1
+    4300000: polySurface1
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -120,7 +111,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
