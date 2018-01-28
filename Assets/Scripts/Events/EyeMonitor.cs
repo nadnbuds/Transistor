@@ -6,7 +6,7 @@ using UnityEngine.UI;
 // vitals effected on right
 public class EyeMonitor : MonoBehaviour
 {
-
+    public Animator EyeAnimator;
     public Image leftEye;
     public Image rightEye;
 
@@ -18,6 +18,7 @@ public class EyeMonitor : MonoBehaviour
     public void DisplayEvent()
     {
         print("HERE");
+        EyeAnimator.SetTrigger("OpenEyes");
         leftEye.sprite = GameManager.Instance.CurrentEvent.Image;
         rightEye.sprite = GameManager.Instance.CurrentEvent.Image;
     }
