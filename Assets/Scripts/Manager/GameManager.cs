@@ -12,12 +12,12 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private Text gameOver;
     [SerializeField]
-    private List<Vital> vitalList;
+    private List<VitalBehavior> vitalList;
     public UnityEvent OnGameOver { get; private set; }
 
     // Float is cooldown time
-    private Dictionary<Producer, float> producers;
-    private Dictionary<Vital, float> vitals;
+    private Dictionary<Producer, float> producers = new Dictionary<Producer, float>();
+    private Dictionary<VitalBehavior, float> vitals = new Dictionary<VitalBehavior, float>();
 
     private enum States
     {
@@ -29,12 +29,8 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        // Initialize Producers
-        producers = new Dictionary<Producer, float>();
-
         // Initialize Vitals
-        vitals = new Dictionary<Vital, float>();
-        foreach (Vital v in vitalList)
+        foreach (VitalBehavior v in vitalList)
         {
             vitals[v] = v.DecrementInterval;
         }
@@ -46,13 +42,14 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        fsm.ChangeState(States.Init);
+        fsm.ChangeState(States.Play);
     }
 
     public void GameOver()
     {
-        OnGameOver.Invoke();
+        //OnGameOver.Invoke();//
         //When invoke is down, functions that relate to onGameOver will be called
+        print(Time.frameCount);
         fsm.ChangeState(States.GameOver);
     }
 
@@ -88,10 +85,17 @@ public class GameManager : Singleton<GameManager>
                 producers[prod] -= Time.deltaTime;
             }
         }
+
+        List<VitalBehavior> vb = new List<VitalBehavior>();
         foreach (var v in vitals)
         {
-            Vital vital = v.Key;
-            if (v.Value <= 0f)
+            vb.Add(v.Key);
+        }
+
+        for (int i = 0; i < vb.Count; ++i)
+        {
+            VitalBehavior vital = vb[i];
+            if (vitals[vital] <= 0f)
             {
                 vitals[vital] = vital.DecrementInterval;
                 vital.Health--;
@@ -100,6 +104,7 @@ public class GameManager : Singleton<GameManager>
             {
                 vitals[vital] -= Time.deltaTime;
             }
+            
         }
     }
 

@@ -3,57 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum VitalType{ BodyHeat, Digestion, HeartBeat, Thought, Energy, Exercise, Mood, MAX }
-
-[CreateAssetMenu()]
+[CreateAssetMenu(menuName = "Create New Vital")]
 public class Vital : ScriptableObject
 {
     [SerializeField]
-    private int maxHealth;
-    [SerializeField]
-    private int startingHealth;
-    [SerializeField]
-    private VitalType vitalType;
-    [SerializeField]
-    private List<ResourceType> acceptableResources;
-
-    public UnityEvent OnZeroHealth { get; private set; }
-    public float DecrementInterval;
-
-    private int health;
-    public int Health
+    private int _maxHealth;
+    public int maxHealth
     {
         get
         {
-            return health;
+            return _maxHealth;
         }
-        set
+        private set
         {
-            health += value;
-            if (health > maxHealth)
-            {
-                health = maxHealth;
-            }
-            if (health <= 0)
-            {
-                health = 0;
-                OnZeroHealth.Invoke();
-            }
+            _maxHealth = value;
         }
     }
 
-    private void Awake()
+    [SerializeField]
+    private int _startingHealth;
+    public int startingHealth
     {
-        Health = startingHealth;
+        get
+        {
+            return _startingHealth;
+        }
+        private set
+        {
+            _startingHealth = value;
+        }
     }
 
-    public bool ParseResource(VitalResource res)
+    [SerializeField]
+    private int _decrementInterval;
+    public int decrementInterval
     {
-        if (acceptableResources.Contains(res.Type))
+        get
         {
-            Health += res.Quantity;
-            return true;
+            return _decrementInterval;
         }
-        return false;
+        private set
+        {
+            _decrementInterval = value;
+        }
     }
 }

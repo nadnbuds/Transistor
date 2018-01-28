@@ -5,17 +5,15 @@ using UnityEngine;
 public class Reciever : MonoBehaviour
 {
     [SerializeField]
-    private Vital vital;
+    private VitalBehavior vital;
 	
     void OnTriggerEnter(Collider other)
     {
         VitalResource resource;
         if (resource = other.gameObject.GetComponent<VitalResource>())
         {
-            if (vital.ParseResource(resource))
-            {
-                other.gameObject.SetActive(false);
-            }
+            vital.ParseResource(resource);
+            other.gameObject.SetActive(false);
         }
     }
 }

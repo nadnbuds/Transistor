@@ -22,7 +22,18 @@ public class VitalDisplay : MonoBehaviour
     /// <summary>
     /// Max fill height
     /// </summary>
-    private float GetMaxFill;
+    private RectTransform _parentRect = null;
+    private RectTransform parentRect
+    {
+        get
+        {
+            if (_parentRect == null)
+                _parentRect = GetComponentInParent<RectTransform>();
+
+            return _parentRect;
+        }
+    }
+
 
     [Range(0f, 1f)]
     private float currentPercentage;
@@ -30,13 +41,22 @@ public class VitalDisplay : MonoBehaviour
     /// <summary>
     /// This rect transform
     /// </summary>
-    private RectTransform rt;
+    private RectTransform _rt = null;
+    private RectTransform rt
+    {
+        get
+        {
+            if (_rt == null)
+                _rt = GetComponent<RectTransform>();
+
+            return _rt;
+        }
+    }
+
 
     private void Awake()
     {
-        rt = GetComponent<RectTransform>();
-        GetMaxFill = GetComponentInParent<RectTransform>().rect.height;
-        currentPercentage = GetComponent<RectTransform>().rect.height / GetMaxFill;
+        currentPercentage = GetComponent<RectTransform>().rect.height / parentRect.rect.height;
     }   
 
     /// <summary>
@@ -44,11 +64,11 @@ public class VitalDisplay : MonoBehaviour
     /// </summary>
     public void ModifyPercentage(float p)
     {
-        float newFill = p * GetMaxFill;
+        float newFill = p * parentRect.rect.height;
         rt.sizeDelta = new Vector2(rt.sizeDelta.x, newFill);
 
         float diff = currentPercentage - p;
-        if (diff > 0)
+        if (diff > 0 && vitalStatus != null)
         {
             //Increase
             vitalStatus = increaseStatus;

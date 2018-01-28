@@ -11,8 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff8a10d4b5d36448bb13e353343fdb5, type: 3}
   m_Name: Thought
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  startingHealth: 90
-  vitalType: 3
-  acceptableResources: 0200000003000000
-  DecrementInterval: 2
+  _maxHealth: 100
+  _startingHealth: 90
+  _decrementInterval: 1

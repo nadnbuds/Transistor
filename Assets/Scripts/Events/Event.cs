@@ -11,9 +11,9 @@ public class Event : ScriptableObject {
 	[SerializeField]
 	private EventType eventType;
 	[SerializeField]
-	private List<KeyValuePair<VitalType, float>> event_list;
+	private List<KeyValuePair<VitalBehavior, float>> event_list;
 
-	public void UpdateEyeMonitor(List<KeyValuePair<VitalType,float>> event_list, EventType eventType)
+	public void UpdateEyeMonitor(List<KeyValuePair<VitalBehavior, float>> event_list, EventType eventType)
     {
         //if (event_list[].Value > 1)
         //{
