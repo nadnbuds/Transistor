@@ -18,6 +18,11 @@ public class GameManager : Singleton<GameManager>
     private List<VitalBehavior> vitalList;
     // public UnityEvent OnGameOver { get; private set; }
 
+	[SerializeField]
+	private List<Event> eventList;
+	//private List<EventData> eventList;
+
+
     [Space(10)]
 
     [SerializeField]
@@ -25,7 +30,9 @@ public class GameManager : Singleton<GameManager>
 
     // Float is cooldown time
     private Dictionary<Producer, float> producers = new Dictionary<Producer, float>();
+	//private Dictionary<Producer, double> producers = new Dictionary<Producer, double>();
     private Dictionary<VitalBehavior, float> vitals = new Dictionary<VitalBehavior, float>();
+	//private Dictionary<VitalBehavior, double> vitals = new Dictionary<VitalBehavior, double>();
 
     private enum States
     {
@@ -52,7 +59,8 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        fsm.ChangeState(States.Play);
+		StartRandomEvent ();
+		fsm.ChangeState(States.Play);
     }
 
     public void GameOver()
@@ -81,6 +89,45 @@ public class GameManager : Singleton<GameManager>
             print("Y");
         }
     }
+
+	private void StartRandomEvent()
+	{
+		int rand = Random.Range (0, eventList.Count - 1);
+		Event selectedEvent = eventList.ElementAt (rand);
+		if (selectedEvent.eventDataList.Count <= 0) {
+			Debug.Log ("Empty eventDataList in selected event.");
+			return;
+		}
+		//Debug.Log ("Selected event: " + selectedEvent.eventDataList.ElementAt(rand));
+		Debug.Log("Selected event: " + selectedEvent.name);
+		foreach (EventData event_data in selectedEvent.eventDataList) {
+			if (event_data.vital.name == "Thought") {
+				if (event_data.number < 0) {
+					vitalList.ElementAt (0).DecrementInterval = 1;
+				} else if (event_data.number == 0) {
+					vitalList.ElementAt (0).DecrementInterval = 2;
+				} else if (event_data.number > 0) {
+					vitalList.ElementAt (0).DecrementInterval = 3;
+				}
+			} else if (event_data.vital.name == "Digestion") {
+				if (event_data.number < 0) {
+					vitalList.ElementAt (1).DecrementInterval = 1;
+				} else if (event_data.number == 0) {
+					vitalList.ElementAt (1).DecrementInterval = 2;
+				} else if (event_data.number > 0) {
+					vitalList.ElementAt (1).DecrementInterval = 3;
+				}
+			} else if (event_data.vital.name == "HeartBeat") {
+				if (event_data.number < 0) {
+					vitalList.ElementAt (2).DecrementInterval = 1;
+				} else if (event_data.number == 0) {
+					vitalList.ElementAt (2).DecrementInterval = 2;
+				} else if (event_data.number > 0) {
+					vitalList.ElementAt (2).DecrementInterval = 3;
+				}
+			}
+		}
+	}
 
     // Updates producer generation intervals and vital decrement intervals
     private void Play_Update()
