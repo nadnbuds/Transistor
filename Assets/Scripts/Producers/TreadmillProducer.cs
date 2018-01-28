@@ -6,10 +6,24 @@ public class TreadmillProducer : Producer, Interactable
 {
     private bool interact = false;
 
+    private float counter;
+
     private void Awake()
     {
         SpawnInterval = 1f;
-        RegisterProducer();
+    }
+
+    private void Update()
+    {
+        if (interact)
+        {
+            counter -= Time.deltaTime;
+            if (counter <= 0)
+            {
+                Generate();
+                counter = SpawnInterval;
+            }
+        }
     }
 
     public void ToggleInteract(PlayerController player)
