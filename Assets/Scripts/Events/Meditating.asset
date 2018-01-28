@@ -12,13 +12,6 @@ MonoBehaviour:
   m_Name: Meditating
   m_EditorClassIdentifier: 
   Length: 0
-  eData:
-  - vital: {fileID: 11400000, guid: b6fffb6e0c4657a4996fd81597de0267, type: 2}
-    number: 1
-    image: {fileID: 0}
-  - vital: {fileID: 11400000, guid: b9e859625cc9b6f44811d3a058554d40, type: 2}
-    number: 1
-    image: {fileID: 0}
-  - vital: {fileID: 11400000, guid: b6a551fbc44e048469e42c24228ef969, type: 2}
-    number: 0
-    image: {fileID: 0}
+  eventType: 0
+  Image: {fileID: 21300000, guid: ac4fcd2a1e8450e43b11d85b9cd60f27, type: 3}
+  eventDataList: []
