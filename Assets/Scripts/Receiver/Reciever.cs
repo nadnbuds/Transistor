@@ -13,7 +13,7 @@ public class Reciever : MonoBehaviour
         VitalResource resource;
         if (resource = other.gameObject.GetComponent<VitalResource>())
         {
-            if(resource.Type == vital.GetCompatibleType())
+            if(resource.Type == vital.GetCompatibleType() || resource.Type == ResourceType.All)
             {
                 vital.Health += resource.Quantity;
                 other.gameObject.SetActive(false);
