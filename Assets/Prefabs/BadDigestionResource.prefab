@@ -57,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 40aa2e5cb7f676e45a88ca64770af475, type: 2}
+  - {fileID: 2100000, guid: 213f02be0febdbe45b0eece0072c9bce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -123,4 +123,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceType: 1
   quantity: -5
-  dropForce: 3
+  dropForce: 1000

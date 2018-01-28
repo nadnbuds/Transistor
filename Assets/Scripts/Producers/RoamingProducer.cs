@@ -20,7 +20,6 @@ public class RoamingProducer : Producer
     {
         agent = GetComponent<NavMeshAgent>();
         counterTilReroute = Random.Range(1, maxGenTilReroute);
-        SpawnInterval = 1f;
         RegisterProducer();
         reroute();
 

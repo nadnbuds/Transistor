@@ -123,4 +123,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceType: 0
   quantity: 5
-  dropForce: 3
+  dropForce: 1000
