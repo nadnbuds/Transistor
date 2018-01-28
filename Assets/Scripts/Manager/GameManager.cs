@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MonsterLove.StateMachine;
 using UnityEngine.Events;
+using System.Linq;
 using UnityEngine.UI;
 
 // decrement vitals
@@ -72,39 +73,29 @@ public class GameManager : Singleton<GameManager>
     // Updates producer generation intervals and vital decrement intervals
     private void Play_Update()
     {
-        foreach (var p in producers)
+        foreach (var p in producers.Keys.ToList())
         {
-            Producer prod = p.Key;
-            if (p.Value <= 0f)
+            if (producers[p] <= 0f)
             {
-                producers[prod] = prod.SpawnInterval;
-                prod.Generate();
+                producers[p] = p.SpawnInterval;
+                p.Generate();
             }
             else
             {
-                producers[prod] -= Time.deltaTime;
+                producers[p] -= Time.deltaTime;
             }
         }
-
-        List<VitalBehavior> vb = new List<VitalBehavior>();
-        foreach (var v in vitals)
+        foreach (var v in vitals.Keys.ToList())
         {
-            vb.Add(v.Key);
-        }
-
-        for (int i = 0; i < vb.Count; ++i)
-        {
-            VitalBehavior vital = vb[i];
-            if (vitals[vital] <= 0f)
+            if (vitals[v] <= 0f)
             {
-                vitals[vital] = vital.DecrementInterval;
-                vital.Health--;
+                vitals[v] = v.DecrementInterval;
+                v.Health--;
             }
             else
             {
-                vitals[vital] -= Time.deltaTime;
+                vitals[v] -= Time.deltaTime;
             }
-            
         }
     }
 
