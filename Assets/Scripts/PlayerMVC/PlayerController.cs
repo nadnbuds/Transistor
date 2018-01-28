@@ -10,6 +10,14 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float interactionDistance;
 
+    [Space(10)]
+
+    [SerializeField]
+    private AudioInfo pickUpSound = null;
+
+    [SerializeField]
+    private AudioInfo dropSound = null;
+
     private Tooltip toolTip;
     private bool canPickup = true;
     private Interactable focusObj;
@@ -50,6 +58,8 @@ public class PlayerController : MonoBehaviour {
             focusObj.ToggleInteract(this);
             canPickup = false;
             toolTip.HideTooltip();
+
+            AudioManager.Instance.PlayAudioAtPoint(pickUpSound, transform.position);
         }
     }
 
@@ -57,6 +67,8 @@ public class PlayerController : MonoBehaviour {
     {
         focusObj.ToggleInteract(this);
         canPickup = true;
+
+        AudioManager.Instance.PlayAudioAtPoint(dropSound, transform.position);
     }
 
     private void Update()

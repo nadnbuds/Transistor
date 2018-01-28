@@ -16,6 +16,11 @@ public class GameManager : Singleton<GameManager>
     private List<VitalBehavior> vitalList;
     public UnityEvent OnGameOver { get; private set; }
 
+    [Space(10)]
+
+    [SerializeField]
+    private AudioInfo backgroundAudio = null;
+
     // Float is cooldown time
     private Dictionary<Producer, float> producers = new Dictionary<Producer, float>();
     private Dictionary<VitalBehavior, float> vitals = new Dictionary<VitalBehavior, float>();
@@ -30,6 +35,9 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
+        //Play background music
+        AudioManager.Instance.PlayLoopingAudioSource(backgroundAudio);
+
         // Initialize Vitals
         foreach (VitalBehavior v in vitalList)
         {
