@@ -28,6 +28,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private AudioInfo backgroundAudio = null;
 
+	private float TimeT;
+
     // Float is cooldown time
     private Dictionary<Producer, float> producers = new Dictionary<Producer, float>();
 	//private Dictionary<Producer, double> producers = new Dictionary<Producer, double>();
@@ -59,6 +61,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+		TimeT = 0;
 		StartRandomEvent ();
 		fsm.ChangeState(States.Play);
     }
@@ -132,6 +135,12 @@ public class GameManager : Singleton<GameManager>
     // Updates producer generation intervals and vital decrement intervals
     private void Play_Update()
     {
+		TimeT += Time.deltaTime;
+		if (TimeT >= 10) {
+			Debug.Log ("TimeT: " + TimeT);
+			StartRandomEvent ();
+			TimeT = 0;
+		}
         foreach (var p in producers.Keys.ToList())
         {
             if (producers[p] <= 0f)
