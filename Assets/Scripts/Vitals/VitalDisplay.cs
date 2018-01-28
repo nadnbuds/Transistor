@@ -20,7 +20,7 @@ public class VitalDisplay : MonoBehaviour
     public Image increaseStatus;
 
     /// <summary>
-    /// Max fill height
+    /// Parent rect
     /// </summary>
     private RectTransform _parentRect = null;
     private RectTransform parentRect
@@ -33,6 +33,8 @@ public class VitalDisplay : MonoBehaviour
             return _parentRect;
         }
     }
+
+    private float maxFillHeight;
 
 
     [Range(0f, 1f)]
@@ -56,7 +58,10 @@ public class VitalDisplay : MonoBehaviour
 
     private void Awake()
     {
-        currentPercentage = GetComponent<RectTransform>().rect.height / parentRect.rect.height;
+        maxFillHeight = parentRect.sizeDelta.y;
+        currentPercentage = rt.sizeDelta.y / maxFillHeight;
+        
+        //print("set to " + maxFillHeight);
     }   
 
     /// <summary>
@@ -64,7 +69,8 @@ public class VitalDisplay : MonoBehaviour
     /// </summary>
     public void ModifyPercentage(float p)
     {
-        float newFill = p * parentRect.rect.height;
+        float newFill = p * maxFillHeight;
+        //print(maxFillHeight);
         rt.sizeDelta = new Vector2(rt.sizeDelta.x, newFill);
 
         float diff = currentPercentage - p;

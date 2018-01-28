@@ -54,7 +54,7 @@ public class VitalBehavior : MonoBehaviour
         GameManager.Instance.GameOver();
     }
 
-    private void Awake()
+    private void Start()
     {
         Health = vitalData.startingHealth;
     }
