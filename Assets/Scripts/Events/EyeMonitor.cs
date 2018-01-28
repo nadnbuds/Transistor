@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class EyeMonitor : MonoBehaviour {
 
-    public Image eImage;
+    public Image leftEye;
+    public Image rightEye;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,4 +16,9 @@ public class EyeMonitor : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void DisplayEvent()
+    {
+        
+    }
 }

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public struct EventData
 {
-    public Vital v;
-    public float f;
+    public Vital vital;
+    public float number;
+    public Image image;
 }
