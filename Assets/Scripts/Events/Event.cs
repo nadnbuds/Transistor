@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EventType{Running, EatingContest, Test, Yoga}
+//public enum EventType{Running, EatingContest, Test, Yoga}
 
 [CreateAssetMenu()]
 public class Event : ScriptableObject {
 
 	public int Length;
-	[SerializeField]
-	private EventType eventType;
-	[SerializeField]
+	//[SerializeField]
+	//private EventType eventType;
+    [SerializeField]
+    private List<EventData> eData;
 	private List<KeyValuePair<VitalBehavior, float>> event_list;
 
 	public void UpdateEyeMonitor(List<KeyValuePair<VitalBehavior, float>> event_list, EventType eventType)
