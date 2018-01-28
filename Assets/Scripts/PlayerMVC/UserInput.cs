@@ -15,6 +15,8 @@ public class UserInput : MonoBehaviour {
 	private void Update () {
         if (Input.GetButtonDown("Space"))
             action = true;
+        else if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
 	}
 
     private void FixedUpdate()
