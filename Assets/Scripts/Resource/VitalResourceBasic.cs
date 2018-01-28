@@ -10,12 +10,14 @@ public class VitalResourceBasic : VitalResource, Interactable {
         if (!interact)
         {
             transform.SetParent(player.transform);
+            player.HoistObj(this.gameObject);
             GetComponent<Rigidbody>().isKinematic = true;
             interact = true;
         }
         else
         {
             transform.SetParent(null);
+            GetComponent<Rigidbody>().isKinematic = false;
             GetComponent<Rigidbody>().AddForce(player.transform.forward * dropForce);
             interact = false;
         }

@@ -18,6 +18,15 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private AudioInfo dropSound = null;
 
+    [SerializeField]
+    private float hoistRate;
+
+    [SerializeField]
+    private Transform BackPos;
+
+    [SerializeField]
+    private Transform ArcPoint;
+
     private Tooltip toolTip;
     private bool canPickup = true;
     private Interactable focusObj;
@@ -49,6 +58,28 @@ public class PlayerController : MonoBehaviour {
             pickupObj();
         else
             putDownObj();
+    }
+
+    public void HoistObj(GameObject obj)
+    {
+        StartCoroutine(hoistObj(obj));
+    }
+
+    private IEnumerator hoistObj(GameObject obj)
+    {
+        yield return null;
+        Vector3 a = obj.transform.position;
+        Vector3 b = BackPos.position;
+        Vector3 c = ArcPoint.position;
+
+        float t = 0;
+        while(t < 1)
+        {
+            t += Time.deltaTime * hoistRate;
+            obj.transform.position = GetPoint(a, b, c, t);
+            yield return null;
+        }
+
     }
 
     private void pickupObj()
@@ -90,5 +121,15 @@ public class PlayerController : MonoBehaviour {
                 toolTip.HideTooltip();
             }
         }
+    }
+
+    public static Vector3 GetPoint(Vector3 p0, Vector3 p1, Vector3 p2, float t)
+    {
+        t = Mathf.Clamp01(t);
+        float oneMinusT = 1f - t;
+        return
+            oneMinusT * oneMinusT * p0 +
+            2f * oneMinusT * t * p1 +
+            t * t * p2;
     }
 }
