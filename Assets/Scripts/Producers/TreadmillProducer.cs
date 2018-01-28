@@ -8,11 +8,6 @@ public class TreadmillProducer : Producer, Interactable
 
     private float counter;
 
-    private void Awake()
-    {
-        SpawnInterval = 1f;
-    }
-
     private void Update()
     {
         if (interact)

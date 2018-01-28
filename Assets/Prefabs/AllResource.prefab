@@ -111,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceType: 3
   quantity: 5
-  dropForce: 3
+  dropForce: 1000
 --- !u!136 &136236956904052658
 CapsuleCollider:
   m_ObjectHideFlags: 1
