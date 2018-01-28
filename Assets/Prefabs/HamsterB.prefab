@@ -570,15 +570,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1975670276956234}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.96913624, y: -1.05, z: -4.341}
+  m_LocalRotation: {x: -0, y: -0.68883985, z: -0, w: 0.72491366}
+  m_LocalPosition: {x: 0.24569184, y: -1.2155981, z: -5.0591927}
   m_LocalScale: {x: 1.4733744, y: 1.4733739, z: 1.4733739}
   m_Children:
   - {fileID: 4130856959313020}
   - {fileID: 4361675984379154}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -87.077, z: 0}
 --- !u!4 &4281047014348266
 Transform:
   m_ObjectHideFlags: 1
@@ -894,7 +894,7 @@ Animator:
   m_GameObject: {fileID: 1975670276956234}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a9b83c0ec9d861046b25373ff4c7a6a0, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2a5ff51617891374f996a4cfa6d98d43, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -942,7 +942,6 @@ SkinnedMeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -958,7 +957,6 @@ SkinnedMeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

@@ -34,15 +34,29 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector]
     public bool CanMove = true;
 
+    private Animator animator;
+
     private void Awake()
     {
         toolTip = FindObjectOfType<Tooltip>();
+        animator = GetComponent<Animator>();
     }
 
     public void Move(float horizontal, float vertical)
     {
         if (CanMove)
         {
+            if (horizontal == 0f && vertical == 0f)
+            {
+                //Animation
+                animator.SetInteger("State", 1);
+            }
+            else
+            {
+                //Animation
+                animator.SetInteger("State", 0);
+            }
+
             Vector3 newVelocity = new Vector3(
             horizontal * moveSpeed,
             gameObject.GetComponent<Rigidbody>().velocity.y, // or 0
