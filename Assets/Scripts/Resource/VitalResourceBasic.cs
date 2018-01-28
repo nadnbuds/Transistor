@@ -10,16 +10,16 @@ public class VitalResourceBasic : VitalResource, Interactable {
         if (!interact)
         {
             transform.SetParent(player.transform);
-            player.HoistObj(this.gameObject);
+            player.HoistObj(this.gameObject, true);
             rb.isKinematic = true;
             col.enabled = false;
             interact = true;
         }
         else
         {
+            player.HoistObj(this.gameObject, false);
             transform.SetParent(null);
             rb.isKinematic = false;
-            rb.AddForce(player.transform.forward.normalized * dropForce);
             col.enabled = true;
             interact = false;
         }

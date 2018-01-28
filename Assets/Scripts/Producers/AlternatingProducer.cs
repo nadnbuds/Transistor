@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Web.UI;	//should give me the library for Pair but it doesn't. Why?
+//using System.Web.UI;	//should give me the library for Pair but it doesn't. Why?
 
 [System.Serializable]
 struct Resource
@@ -37,7 +37,6 @@ public class AlternatingProducer : Producer {
 	// Use this for initialization
 	private void Awake()
     {
-        SpawnInterval = 1f;
         RegisterProducer();
 	}
 }

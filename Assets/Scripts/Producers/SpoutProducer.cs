@@ -9,7 +9,6 @@ public class SpoutProducer : Producer
 
     private void Awake()
     {
-        SpawnInterval = 1f;
         RegisterProducer();
     }
 

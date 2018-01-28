@@ -34,12 +34,15 @@ public class PlayerController : MonoBehaviour {
     private bool canPickup = true;
     private Interactable focusObj;
 
+    private Animator anim;
+
     [HideInInspector]
     public bool CanMove = true;
 
     private void Awake()
     {
         toolTip = FindObjectOfType<Tooltip>();
+        anim = GetComponent<Animator>();
     }
 
     public void Move(float horizontal, float vertical)
@@ -55,6 +58,11 @@ public class PlayerController : MonoBehaviour {
             if(dir.magnitude > 0)
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), .15f);
+                anim.SetInteger("State", 0);
+            }
+            else
+            {
+                anim.SetInteger("State", 1);
             }
 
             this.gameObject.GetComponent<Rigidbody>().velocity = newVelocity;
@@ -69,25 +77,34 @@ public class PlayerController : MonoBehaviour {
             putDownObj();
     }
 
-    public void HoistObj(GameObject obj)
+    public void HoistObj(GameObject obj, bool up)
     {
-        StartCoroutine(hoistObj(obj));
+        Vector3 a, b, c;
+        c = ArcPoint.position;
+        a = obj.transform.position;
+        if (up)
+            b = BackPos.position;
+        else
+        {
+            b = rayCastPoint.position;
+            anim.SetInteger("State", 2);
+        }
+
+        StartCoroutine(hoistObj(obj, a, c, b));
     }
 
-    private IEnumerator hoistObj(GameObject obj)
+    private IEnumerator hoistObj(GameObject obj, Vector3 a, Vector3 b, Vector3 c)
     {
         yield return null;
-        Vector3 a = obj.transform.position;
-        Vector3 b = BackPos.position;
-        Vector3 c = ArcPoint.position;
 
         float t = 0;
         while(t < 1)
         {
             t += Time.deltaTime * hoistRate;
-            obj.transform.position = GetPoint(a, c, b, t);
+            obj.transform.position = GetPoint(a, b, c, t);
             yield return null;
         }
+        obj.GetComponent<Rigidbody>().AddForce(transform.forward.normalized * 400);
 
     }
 
