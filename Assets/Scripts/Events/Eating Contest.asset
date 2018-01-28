@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Length: 0
   eventType: 0
-  Image: {fileID: 0}
+  Image: {fileID: 21300016, guid: 6e5a545b63c05674e81c9a42fa5754c9, type: 3}
   eventDataList:
   - vital: {fileID: 11400000, guid: b6fffb6e0c4657a4996fd81597de0267, type: 2}
     number: 0
