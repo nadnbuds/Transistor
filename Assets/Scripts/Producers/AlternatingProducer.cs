@@ -37,7 +37,6 @@ public class AlternatingProducer : Producer {
 	// Use this for initialization
 	private void Awake()
     {
-        SpawnInterval = 1f;
         RegisterProducer();
 	}
 }

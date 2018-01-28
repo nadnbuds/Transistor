@@ -7,7 +7,20 @@ public abstract class Producer : MonoBehaviour
     [SerializeField]
     protected float dropRadiusMin, dropRadiusMax;
     public ObjectPooler pooler;
-    public float SpawnInterval { get; protected set; }
+
+    [SerializeField]
+    private float spawnInterval;
+
+    public float SpawnInterval {
+        get
+        {
+            return spawnInterval;
+        }
+
+        protected set {
+            spawnInterval = value;
+        }
+    }
 
 	public abstract void Generate();
     

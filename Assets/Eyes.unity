@@ -109,7 +109,7 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-  m_NavMeshData: {fileID: 23800000, guid: 6219bee352391cf459c48b4bbfeb5e6d, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 4842f9a830808b948ad4b1e113f72597, type: 2}
 --- !u!1 &101282678
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,9 +623,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a29ad0cd2776cb42af44a5142ab07c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropRadiusMin: 1
-  dropRadiusMax: 2
+  dropRadiusMin: 2
+  dropRadiusMax: 3
   pooler: {fileID: 0}
+  spawnInterval: 3
   resource_list:
   - pooler: {fileID: 308667011}
     weight: 10
@@ -924,9 +925,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6d6a921d19cdc84f8ea6b6caeba9cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropRadiusMin: 1
-  dropRadiusMax: 2
+  dropRadiusMin: 2
+  dropRadiusMax: 3
   pooler: {fileID: 547596321}
+  spawnInterval: 3
   forceStrength: 10
 --- !u!23 &465650131
 MeshRenderer:
@@ -1087,9 +1089,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013cf1298f4fdc74493032e145408898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropRadiusMin: 1
+  dropRadiusMin: 2
   dropRadiusMax: 3
   pooler: {fileID: 1198108861}
+  spawnInterval: 3
   maxGenTilReroute: 4
   maxDistance: 60
 --- !u!195 &479176972
@@ -1525,11 +1528,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4276016888398010, guid: fe3017199e237fd41b9beeb06c5dbd46, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4006360593689638, guid: fe3017199e237fd41b9beeb06c5dbd46, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114690480555789090, guid: fe3017199e237fd41b9beeb06c5dbd46,
+        type: 2}
+      propertyPath: _objToPool
+      value: 
+      objectReference: {fileID: 1911705781803858, guid: 7a9b7a2ea1af2984b911b3469a90bf65,
+        type: 2}
+    - target: {fileID: 114304168298904476, guid: fe3017199e237fd41b9beeb06c5dbd46,
+        type: 2}
+      propertyPath: _objToPool
+      value: 
+      objectReference: {fileID: 1635524675586340, guid: a3b213433e439c74884050f5062c6856,
+        type: 2}
+    - target: {fileID: 4043461770855296, guid: fe3017199e237fd41b9beeb06c5dbd46, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe3017199e237fd41b9beeb06c5dbd46, type: 2}
@@ -1564,9 +1583,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa8424ae6d332540ae546eb4016d3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropRadiusMin: 1
-  dropRadiusMax: 2
+  dropRadiusMin: 2
+  dropRadiusMax: 3
   pooler: {fileID: 809387102}
+  spawnInterval: 4
 --- !u!23 &616569756
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1725,7 +1745,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 677603529}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.094, z: -0.233}
+  m_LocalPosition: {x: 0, y: 0.872, z: -0.233}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 837265887}
@@ -3053,7 +3073,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ecdedc90674a3d747b995bd4eedfb25c, type: 2}
+      objectReference: {fileID: 2100000, guid: 94e99d50cd95b2e4780f4abe431fb9c2, type: 2}
     - target: {fileID: 1526320244544884, guid: c48dec930ed63804eb256d1f59e4c560, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 8
@@ -6969,8 +6989,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.04093716, y: 0.029631626, z: 0.039431535}
-  m_Center: {x: -0.035964828, y: 0.033369616, z: 0.024732057}
+  m_Size: {x: 0.040937174, y: 0.052507944, z: 0.061031774}
+  m_Center: {x: -0.035964865, y: 0.044807784, z: 0.025699751}
 --- !u!65 &2052317522
 BoxCollider:
   m_ObjectHideFlags: 0

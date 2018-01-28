@@ -14,4 +14,10 @@ MonoBehaviour:
   Length: 0
   eventType: 0
   Image: {fileID: 21300000, guid: 1a2744073deb58e468fc64c357161405, type: 3}
-  eventDataList: []
+  eventDataList:
+  - vital: {fileID: 11400000, guid: b6fffb6e0c4657a4996fd81597de0267, type: 2}
+    number: -1
+  - vital: {fileID: 11400000, guid: b9e859625cc9b6f44811d3a058554d40, type: 2}
+    number: 1
+  - vital: {fileID: 11400000, guid: b6a551fbc44e048469e42c24228ef969, type: 2}
+    number: 0
