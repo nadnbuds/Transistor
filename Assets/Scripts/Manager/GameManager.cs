@@ -13,8 +13,10 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private Text gameOver;
     [SerializeField]
+    private Transform randomPointsParent;
+    [SerializeField]
     private List<VitalBehavior> vitalList;
-    public UnityEvent OnGameOver { get; private set; }
+    // public UnityEvent OnGameOver { get; private set; }
 
     // Float is cooldown time
     private Dictionary<Producer, float> producers = new Dictionary<Producer, float>();
@@ -22,7 +24,6 @@ public class GameManager : Singleton<GameManager>
 
     private enum States
     {
-        Init,
         Play,
         GameOver
     }
@@ -38,7 +39,7 @@ public class GameManager : Singleton<GameManager>
 
         // Initialize FSM
         fsm = StateMachine<States>.Initialize(this);
-        OnGameOver = new UnityEvent();
+        // OnGameOver = new UnityEvent();
     }
 
     private void Start()
@@ -60,14 +61,17 @@ public class GameManager : Singleton<GameManager>
     }
 
     #region States
-    private void Init_Enter()
-    {
-        // TODO
-    }
-
     private void Play_Enter()
     {
-        // TODO
+        // Setup points
+        List<Transform> randomPoints = new List<Transform>(randomPointsParent.GetComponentsInChildren<Transform>());
+        foreach (var p in FindObjectsOfType<Producer>())
+        {
+            int index = Random.Range(0, randomPoints.Count);
+            p.transform.position = randomPoints[index].position;
+            randomPoints.RemoveAt(index);
+            print("Y");
+        }
     }
 
     // Updates producer generation intervals and vital decrement intervals
