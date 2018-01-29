@@ -17,9 +17,10 @@ public class GameManager : Singleton<GameManager>
     private Transform randomPointsParent;
     [SerializeField]
     private List<VitalBehavior> vitalList;
+    [SerializeField]
+
     // public UnityEvent OnGameOver { get; private set; }
 
-    [SerializeField]
     private List<Event> eventList;
     //private List<EventData> eventList;
     public Event CurrentEvent { get; private set; }
@@ -100,6 +101,7 @@ public class GameManager : Singleton<GameManager>
         Event selectedEvent = eventList.ElementAt(rand);
         CurrentEvent = selectedEvent;
         OnEventChange.Invoke();
+        Debug.Log("Event changed");
         if (selectedEvent.eventDataList.Count <= 0)
         {
             Debug.Log("Empty eventDataList in selected event.");
