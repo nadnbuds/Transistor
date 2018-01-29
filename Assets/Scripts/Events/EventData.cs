@@ -8,5 +8,4 @@ public struct EventData
 {
     public Vital vital;
     public float number;
-    public Image image;
 }

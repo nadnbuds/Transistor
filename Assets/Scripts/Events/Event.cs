@@ -10,6 +10,7 @@ public class Event : ScriptableObject {
 	public int Length;
 	[SerializeField]
 	private EventType eventType;
+    public Sprite Image;
 	[SerializeField]
 	public List<KeyValuePair<VitalBehavior, float>> vital_list = new List<KeyValuePair<VitalBehavior, float>>();
 

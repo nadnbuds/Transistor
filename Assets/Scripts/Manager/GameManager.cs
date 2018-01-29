@@ -5,6 +5,7 @@ using MonsterLove.StateMachine;
 using UnityEngine.Events;
 using System.Linq;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 // decrement vitals
 // generate
@@ -18,23 +19,24 @@ public class GameManager : Singleton<GameManager>
     private List<VitalBehavior> vitalList;
     // public UnityEvent OnGameOver { get; private set; }
 
-	[SerializeField]
-	private List<Event> eventList;
-	//private List<EventData> eventList;
-
+    [SerializeField]
+    private List<Event> eventList;
+    //private List<EventData> eventList;
+    public Event CurrentEvent { get; private set; }
+    public UnityEvent OnEventChange { get; private set; }
 
     [Space(10)]
 
     [SerializeField]
     private AudioInfo backgroundAudio = null;
 
-	private float TimeT;
+    private float TimeT;
 
     // Float is cooldown time
     private Dictionary<Producer, float> producers = new Dictionary<Producer, float>();
-	//private Dictionary<Producer, double> producers = new Dictionary<Producer, double>();
+    //private Dictionary<Producer, double> producers = new Dictionary<Producer, double>();
     private Dictionary<VitalBehavior, float> vitals = new Dictionary<VitalBehavior, float>();
-	//private Dictionary<VitalBehavior, double> vitals = new Dictionary<VitalBehavior, double>();
+    //private Dictionary<VitalBehavior, double> vitals = new Dictionary<VitalBehavior, double>();
 
     private enum States
     {
@@ -45,9 +47,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        //Play background music
-        AudioManager.Instance.PlayLoopingAudioSource(backgroundAudio);
-
+        OnEventChange = new UnityEvent();
         // Initialize Vitals
         foreach (VitalBehavior v in vitalList)
         {
@@ -61,9 +61,11 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-		TimeT = 0;
-		StartRandomEvent ();
-		fsm.ChangeState(States.Play);
+        TimeT = 0;
+        StartRandomEvent();
+        fsm.ChangeState(States.Play);
+        //Play background music
+        AudioManager.Instance.PlayLoopingAudioSource(backgroundAudio);
     }
 
     public void GameOver()
@@ -84,63 +86,87 @@ public class GameManager : Singleton<GameManager>
     {
         // Setup points
         List<Transform> randomPoints = new List<Transform>(randomPointsParent.GetComponentsInChildren<Transform>());
-        foreach (var p in FindObjectsOfType<Producer>())
+        foreach (Producer p in producers.Keys)
         {
             int index = Random.Range(0, randomPoints.Count);
             p.transform.position = randomPoints[index].position;
             randomPoints.RemoveAt(index);
-            print("Y");
         }
     }
 
-	private void StartRandomEvent()
-	{
-		int rand = Random.Range (0, eventList.Count - 1);
-		Event selectedEvent = eventList.ElementAt (rand);
-		if (selectedEvent.eventDataList.Count <= 0) {
-			Debug.Log ("Empty eventDataList in selected event.");
-			return;
-		}
-		//Debug.Log ("Selected event: " + selectedEvent.eventDataList.ElementAt(rand));
-		Debug.Log("Selected event: " + selectedEvent.name);
-		foreach (EventData event_data in selectedEvent.eventDataList) {
-			if (event_data.vital.name == "Thought") {
-				if (event_data.number < 0) {
-					vitalList.ElementAt (0).DecrementInterval = 1;
-				} else if (event_data.number == 0) {
-					vitalList.ElementAt (0).DecrementInterval = 2;
-				} else if (event_data.number > 0) {
-					vitalList.ElementAt (0).DecrementInterval = 3;
-				}
-			} else if (event_data.vital.name == "Digestion") {
-				if (event_data.number < 0) {
-					vitalList.ElementAt (1).DecrementInterval = 1;
-				} else if (event_data.number == 0) {
-					vitalList.ElementAt (1).DecrementInterval = 2;
-				} else if (event_data.number > 0) {
-					vitalList.ElementAt (1).DecrementInterval = 3;
-				}
-			} else if (event_data.vital.name == "HeartBeat") {
-				if (event_data.number < 0) {
-					vitalList.ElementAt (2).DecrementInterval = 1;
-				} else if (event_data.number == 0) {
-					vitalList.ElementAt (2).DecrementInterval = 2;
-				} else if (event_data.number > 0) {
-					vitalList.ElementAt (2).DecrementInterval = 3;
-				}
-			}
-		}
-	}
+    private void StartRandomEvent()
+    {
+        int rand = Random.Range(0, eventList.Count - 1);
+        Event selectedEvent = eventList.ElementAt(rand);
+        CurrentEvent = selectedEvent;
+        OnEventChange.Invoke();
+        if (selectedEvent.eventDataList.Count <= 0)
+        {
+            Debug.Log("Empty eventDataList in selected event.");
+            return;
+        }
+        //Debug.Log ("Selected event: " + selectedEvent.eventDataList.ElementAt(rand));
+        Debug.Log("Selected event: " + selectedEvent.name);
+        foreach (EventData event_data in selectedEvent.eventDataList)
+        {
+            if (event_data.vital.name == "Thought")
+            {
+                if (event_data.number < 0)
+                {
+                    vitalList.ElementAt(0).DecrementInterval = 1;
+                }
+                else if (event_data.number == 0)
+                {
+                    vitalList.ElementAt(0).DecrementInterval = 2;
+                }
+                else if (event_data.number > 0)
+                {
+                    vitalList.ElementAt(0).DecrementInterval = 3;
+                }
+            }
+            else if (event_data.vital.name == "Digestion")
+            {
+                if (event_data.number < 0)
+                {
+                    vitalList.ElementAt(1).DecrementInterval = 1;
+                }
+                else if (event_data.number == 0)
+                {
+                    vitalList.ElementAt(1).DecrementInterval = 2;
+                }
+                else if (event_data.number > 0)
+                {
+                    vitalList.ElementAt(1).DecrementInterval = 3;
+                }
+            }
+            else if (event_data.vital.name == "HeartBeat")
+            {
+                if (event_data.number < 0)
+                {
+                    vitalList.ElementAt(2).DecrementInterval = 1;
+                }
+                else if (event_data.number == 0)
+                {
+                    vitalList.ElementAt(2).DecrementInterval = 2;
+                }
+                else if (event_data.number > 0)
+                {
+                    vitalList.ElementAt(2).DecrementInterval = 3;
+                }
+            }
+        }
+    }
 
     // Updates producer generation intervals and vital decrement intervals
     private void Play_Update()
     {
-		TimeT += Time.deltaTime;
-		if (TimeT >= 10) {
-			Debug.Log ("TimeT: " + TimeT);
-			StartRandomEvent ();
-			TimeT = 0;
-		}
+        TimeT += Time.deltaTime;
+        if (TimeT >= 10)
+        {
+            Debug.Log("TimeT: " + TimeT);
+            StartRandomEvent();
+            TimeT = 0;
+        }
         foreach (var p in producers.Keys.ToList())
         {
             if (producers[p] <= 0f)

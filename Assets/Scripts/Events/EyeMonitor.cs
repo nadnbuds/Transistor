@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EyeMonitor : MonoBehaviour {
+// vitals effected on right
+public class EyeMonitor : MonoBehaviour
+{
 
     public Image leftEye;
     public Image rightEye;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    private void Start()
+    {
+        GameManager.Instance.OnEventChange.AddListener(DisplayEvent);
+    }
 
     public void DisplayEvent()
     {
-        
+        print("HERE");
+        leftEye.sprite = GameManager.Instance.CurrentEvent.Image;
+        rightEye.sprite = GameManager.Instance.CurrentEvent.Image;
     }
 }

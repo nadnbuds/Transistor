@@ -11,13 +11,13 @@ public class VitalDisplay : MonoBehaviour
     [Space(10)]
 
     [SerializeField]
-    public Image decreaseStatus;
+    public Sprite decreaseStatus;
 
     [SerializeField]
-    public Image veryDecreaseStatus;
+    public Sprite veryDecreaseStatus;
 
     [SerializeField]
-    public Image increaseStatus;
+    public Sprite increaseStatus;
 
     /// <summary>
     /// Parent rect
@@ -60,9 +60,9 @@ public class VitalDisplay : MonoBehaviour
     {
         maxFillHeight = parentRect.sizeDelta.y;
         currentPercentage = rt.sizeDelta.y / maxFillHeight;
-        
+
         //print("set to " + maxFillHeight);
-    }   
+    }
 
     /// <summary>
     /// Set fill
@@ -77,12 +77,12 @@ public class VitalDisplay : MonoBehaviour
         if (diff > 0 && vitalStatus != null)
         {
             //Increase
-            vitalStatus = increaseStatus;
+            vitalStatus.sprite = increaseStatus;
         }
         else
         {
             //Lower
-            vitalStatus = decreaseStatus;
+            vitalStatus.sprite = decreaseStatus;
         }
     }
 }
