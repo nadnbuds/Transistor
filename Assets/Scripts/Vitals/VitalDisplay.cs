@@ -14,9 +14,6 @@ public class VitalDisplay : MonoBehaviour
     public Sprite decreaseStatus;
 
     [SerializeField]
-    public Sprite veryDecreaseStatus;
-
-    [SerializeField]
     public Sprite increaseStatus;
 
     /// <summary>
@@ -76,13 +73,10 @@ public class VitalDisplay : MonoBehaviour
         float diff = currentPercentage - p;
         if (diff > 0 && vitalStatus != null)
         {
-            //Increase
-            vitalStatus.sprite = increaseStatus;
-        }
+            vitalStatus.sprite = decreaseStatus;     }
         else
         {
-            //Lower
-            vitalStatus.sprite = decreaseStatus;
+            vitalStatus.sprite = increaseStatus;
         }
     }
 }
